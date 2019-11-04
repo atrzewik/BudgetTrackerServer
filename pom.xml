@@ -23,10 +23,9 @@
         <version.plugin.maven.jar>3.1.0</version.plugin.maven.jar>
         <version.plugin.maven.compiler>3.8.0</version.plugin.maven.compiler>
         <version.plugin.maven.resources>3.1.0</version.plugin.maven.resources>
-        <version.testng>6.14.3</version.testng>
-        <version.h2>1.4.199</version.h2>
         <version.junit.jupiter>5.5.1</version.junit.jupiter>
         <version.jacoco>0.8.4</version.jacoco>
+        <version.sonar>3.7.0.1746</version.sonar>
     </properties>
 
     <dependencies>
@@ -38,24 +37,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${version.testng}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${version.junit.jupiter}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${version.h2}</version>
-            <scope>runtime</scope>
         </dependency>
 
     </dependencies>
@@ -111,6 +96,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.plugin.maven.surefire}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${version.sonar}</version>
             </plugin>
 
             <plugin>

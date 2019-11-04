@@ -7,7 +7,6 @@ variables:
 cache:
   paths:
     - .m2/repository
-    - target
 
 stages:
   - build
@@ -17,14 +16,16 @@ build:
   stage: build
   script:
     - echo "Building.."
-    - mvn $MAVEN_CLI_OPTS compile
-  tags:
-    - gitlab-org
+    - mvn $MAVEN_CLI_OPTS package -DskipTests
 
 test:
   stage: test
   script:
     - echo "Testing.."
-    - mvn $MAVEN_CLI_OPTS verify sonar:sonar   -Dsonar.projectKey=com.trzewik:budget-tracker-server   -Dsonar.organization=mygitlab   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_LOGIN
-  tags:
-    - gitlab-org
+    - mvn $MAVEN_CLI_OPTS verify
+
+sonar:
+  stage: test
+  script:
+    - echo "SonarCloud analysis"
+    - mvn $MAVEN_CLI_OPTS sonar:sonar   -Dsonar.projectKey=com.trzewik:budget-tracker-server   -Dsonar.organization=mygitlab   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_LOGIN
