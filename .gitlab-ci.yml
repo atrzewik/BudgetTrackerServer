@@ -1,0 +1,30 @@
+image: maven:latest
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+
+cache:
+  paths:
+    - .m2/repository
+    - target
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - echo "Building.."
+    - mvn $MAVEN_CLI_OPTS compile
+  tags:
+    - gitlab-org
+
+test:
+  stage: test
+  script:
+  - echo "Testing.."
+  - mvn $MAVEN_CLI_OPTS test
+  tags:
+    - gitlab-org
