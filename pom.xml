@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.trzewik</groupId>
     <artifactId>budget-tracker-server</artifactId>
     <version>0.1</version>
@@ -26,9 +33,37 @@
         <version.junit.jupiter>5.5.1</version.junit.jupiter>
         <version.jacoco>0.8.4</version.jacoco>
         <version.sonar>3.7.0.1746</version.sonar>
+        <version.h2>1.4.199</version.h2>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${version.h2}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
@@ -47,6 +82,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -76,7 +115,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.trzewik.budgettrackerserver.Main</mainClass>
+                            <mainClass>com.trzewik.budgettrackerserver.BudgetTrackerServerApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -135,7 +174,7 @@
                                     <limits>
                                         <limit>
                                             <counter>METHOD</counter>
-                                            <minimum>0.7</minimum>
+                                            <minimum>0.5</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -143,7 +182,7 @@
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
-                                            <minimum>0.7</minimum>
+                                            <minimum>0.3</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
