@@ -26,6 +26,17 @@ test:
 
 sonar:
   stage: test
+  except:
+    - master
+  before_script:
+    - apt-get update -q
+    - apt-get install -y jq
   script:
-    - echo "SonarCloud analysis"
-    - mvn $MAVEN_CLI_OPTS sonar:sonar   -Dsonar.projectKey=com.trzewik:budget-tracker-server   -Dsonar.organization=mygitlab   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_LOGIN
+    - git fetch
+    - mvn $MAVEN_CLI_OPTS verify sonar:sonar -Dsonar.projectKey=com.trzewik:budget-tracker-server   -Dsonar.organization=mygitlab   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_LOGIN   -Dsonar.branch.name=$CI_BUILD_REF_NAME
+    - STATUS=$(curl -XGET -s https://sonarcloud.io/api/qualitygates/project_status\?projectKey\=com.trzewik:budget-tracker-server | jq -r .projectStatus.status);
+      if [ $STATUS = "ERROR" ];
+      then echo "Quality gate failed.";
+      exit 1;
+      else echo "Quality gate is OK.";
+      fi;
