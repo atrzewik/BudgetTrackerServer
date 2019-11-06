@@ -11,6 +11,7 @@ cache:
 stages:
   - build
   - test
+  - sonar
 
 build:
   stage: build
@@ -24,15 +25,18 @@ test:
     - echo "Testing.."
     - mvn $MAVEN_CLI_OPTS verify
 
-sonar:
+prepare_sonar:
   stage: test
-  before_script:
-    - apt-get update -q
-    - apt-get install -y jq
   script:
+    - echo "Preparing sonar for report"
     - git fetch
     - mvn $MAVEN_CLI_OPTS verify sonar:sonar -Dsonar.projectKey=com.trzewik:budget-tracker-server   -Dsonar.organization=mygitlab   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_LOGIN   -Dsonar.branch.name=$CI_BUILD_REF_NAME
     - sleep 15
+
+sonar:
+  image: everpeace/curl-jq:latest
+  stage: sonar
+  script:
     - STATUS=$(curl -XGET -s https://sonarcloud.io/api/qualitygates/project_status\?projectKey\=com.trzewik:budget-tracker-server | jq -r .projectStatus.status);
       if [ $STATUS = "ERROR" ];
       then echo "Quality gate failed.";
