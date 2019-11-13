@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author Agnieszka Trzewik
  */
+
 @SpringBootApplication
 public class BudgetTrackerServerApplication {
 

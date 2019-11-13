@@ -1,4 +1,4 @@
-package com.trzewik.budgettrackerserver;
+package com.trzewik.budgettrackerserver.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,10 @@ import java.math.BigDecimal;
 /**
  * @author Agnieszka Trzewik
  */
-@Getter
 @AllArgsConstructor
-class Spending {
+@NoArgsConstructor
+@Getter
+public class SpendingDTO {
 
     private String description;
     private BigDecimal price;

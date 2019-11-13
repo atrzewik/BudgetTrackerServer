@@ -2,3 +2,6 @@
 .idea/
 target
 *.iml
+
+#Database
+.db

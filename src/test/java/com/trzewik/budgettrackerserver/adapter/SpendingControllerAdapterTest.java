@@ -1,29 +1,26 @@
-package com.trzewik.budgettrackerserver;
+package com.trzewik.budgettrackerserver.adapter;
 
-import io.restassured.http.ContentType;
+import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.context.WebApplicationContext;
 
 import static io.restassured.http.ContentType.JSON;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author Agnieszka Trzewik
  */
 
 @SpringBootTest
-class SpendingControllerTest {
-
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+class SpendingControllerAdapterTest {
 
     @BeforeEach
     void initialiseRestAssuredMockMvcStandalone() {
-        RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
-
+        RestAssuredMockMvc.standaloneSetup(new SpendingControllerAdapter(mock(SpendingPort.class)));
     }
 
     @Test
@@ -39,9 +36,19 @@ class SpendingControllerTest {
                 .when()
                 .post("/spendings")
                 .then()
-                .contentType(ContentType.TEXT)
                 .statusCode(200);
+    }
 
+    @Test
+    void should_returnEmptyList_when_properSpendingsGet() {
+
+        RestAssuredMockMvc
+                .given()
+                .get("/spendings")
+                .then()
+                .contentType(JSON)
+                .statusCode(200)
+                .body(is(equalTo("[]")));
     }
 
 }
