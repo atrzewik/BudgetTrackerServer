@@ -5,6 +5,7 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,6 +17,7 @@ import static org.mockito.Mockito.mock;
  */
 
 @SpringBootTest
+@TestPropertySource(locations = "classpath:test.properties")
 class SpendingControllerAdapterTest {
 
     @BeforeEach
@@ -49,6 +51,17 @@ class SpendingControllerAdapterTest {
                 .contentType(JSON)
                 .statusCode(200)
                 .body(is(equalTo("[]")));
+    }
+
+    @Test
+    void should_returnStatusCode200_when_properSummarySpendingsGet() {
+
+        RestAssuredMockMvc
+                .given()
+                .when()
+                .get("/summary")
+                .then()
+                .statusCode(200);
     }
 
 }

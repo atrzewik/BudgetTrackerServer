@@ -15,8 +15,6 @@ import java.math.BigDecimal;
  * @author Agnieszka Trzewik
  */
 @Entity
-@NoArgsConstructor
-@Getter
 public class Spending {
 
     @JsonIgnore
@@ -24,12 +22,9 @@ public class Spending {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     private String description;
+    @Getter
     private BigDecimal price;
 
-    @JsonCreator
-    Spending(String description, BigDecimal price) {
-        this.description = description;
-        this.price = price;
-    }
 }

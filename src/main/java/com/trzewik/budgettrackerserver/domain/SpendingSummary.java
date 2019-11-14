@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 /**
  * @author Agnieszka Trzewik
  */
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class SpendingSummary {
