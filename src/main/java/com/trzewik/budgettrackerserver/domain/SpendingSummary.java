@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 /**
  * @author Agnieszka Trzewik
  */
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-public class SpendingDTO {
+public class SpendingSummary {
 
-    private String description;
-    private BigDecimal price;
+    private BigDecimal summary;
+    private OffsetDateTime timestamp;
+
 
 }

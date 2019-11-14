@@ -4,4 +4,4 @@ target
 *.iml
 
 #Database
-.db
+*.db

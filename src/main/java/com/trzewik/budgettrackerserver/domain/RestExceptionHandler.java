@@ -14,10 +14,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    public RestExceptionHandler() {
-        super();
-    }
-
     @ExceptionHandler(NoSpendingExistsException.class)
     protected ResponseEntity<Object> handleNotFound(Exception e, WebRequest request) {
         return handleExceptionInternal(e, e.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);

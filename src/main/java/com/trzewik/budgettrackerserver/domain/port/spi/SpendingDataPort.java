@@ -1,6 +1,6 @@
 package com.trzewik.budgettrackerserver.domain.port.spi;
 
-import com.trzewik.budgettrackerserver.domain.SpendingEntity;
+import com.trzewik.budgettrackerserver.domain.Spending;
 
 import javax.inject.Named;
 import java.util.Optional;
@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface SpendingDataPort<T> {
 
     @SuppressWarnings("UnusedReturnValue")
-    <S extends SpendingEntity> S save(S entity);
+    <S extends Spending> S save(S entity);
 
     Iterable<T> findAll();
 
-    Optional<SpendingEntity> findById(Long aLong);
+    Optional<Spending> findById(Long aLong);
 
 }

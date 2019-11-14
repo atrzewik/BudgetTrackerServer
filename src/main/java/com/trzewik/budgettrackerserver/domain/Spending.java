@@ -1,5 +1,6 @@
 package com.trzewik.budgettrackerserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +16,9 @@ import java.math.BigDecimal;
 @Entity
 @NoArgsConstructor
 @Getter
-public class SpendingEntity {
+public class Spending {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +26,7 @@ public class SpendingEntity {
     private String description;
     private BigDecimal price;
 
-    SpendingEntity(String description, BigDecimal price) {
+    Spending(String description, BigDecimal price) {
         this.description = description;
         this.price = price;
     }

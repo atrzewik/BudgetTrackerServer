@@ -1,6 +1,6 @@
 package com.trzewik.budgettrackerserver.adapter;
 
-import com.trzewik.budgettrackerserver.domain.SpendingEntity;
+import com.trzewik.budgettrackerserver.domain.Spending;
 import com.trzewik.budgettrackerserver.domain.port.spi.SpendingDataPort;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,14 +11,14 @@ import java.util.Optional;
  * @author Agnieszka Trzewik
  */
 @Named
-interface SpendingRepositoryAdapter extends CrudRepository<SpendingEntity, Long>, SpendingDataPort<SpendingEntity> {
+interface SpendingRepositoryAdapter extends CrudRepository<Spending, Long>, SpendingDataPort<Spending> {
 
     @Override
-    <S extends SpendingEntity> S save(S entity);
+    <S extends Spending> S save(S entity);
 
     @Override
-    Iterable<SpendingEntity> findAll();
+    Iterable<Spending> findAll();
 
     @Override
-    Optional<SpendingEntity> findById(Long aLong);
+    Optional<Spending> findById(Long aLong);
 }
