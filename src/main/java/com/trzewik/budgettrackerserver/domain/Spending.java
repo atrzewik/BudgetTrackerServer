@@ -1,5 +1,6 @@
 package com.trzewik.budgettrackerserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Spending {
     private String description;
     private BigDecimal price;
 
+    @JsonCreator
     Spending(String description, BigDecimal price) {
         this.description = description;
         this.price = price;
