@@ -14,11 +14,6 @@ import java.io.IOException;
 @ControllerAdvice
 class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(NoSpendingExistsException.class)
-    protected void handleNotFound(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.NOT_FOUND.value());
-    }
-
     @ExceptionHandler(ToLowPriceException.class)
     protected void handleBadRequest(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value());

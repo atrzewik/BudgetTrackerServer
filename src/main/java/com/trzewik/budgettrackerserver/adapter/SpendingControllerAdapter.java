@@ -1,13 +1,15 @@
 package com.trzewik.budgettrackerserver.adapter;
 
 
-import com.trzewik.budgettrackerserver.domain.NoSpendingExistsException;
 import com.trzewik.budgettrackerserver.domain.Spending;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequiredArgsConstructor
-class SpendingControllerAdapter {
+public class SpendingControllerAdapter {
 
     private final SpendingPort spendingPort;
 
@@ -25,18 +27,13 @@ class SpendingControllerAdapter {
         spendingPort.addNewSpendings(spending);
     }
 
-    @GetMapping("/spendings/{id}")
-    Spending getSpending(@PathVariable Long id) throws NoSpendingExistsException {
-        return spendingPort.getSpending(id);
-    }
-
     @GetMapping("/spendings")
     List<Spending> getAllSpendings() {
         return spendingPort.getAllSpendings();
     }
 
     @GetMapping("/summary")
-    SpendingSummary getSpendingSummary() throws NoSpendingExistsException {
+    SpendingSummary getSpendingSummary() {
         return spendingPort.getSpendingSummary();
     }
 

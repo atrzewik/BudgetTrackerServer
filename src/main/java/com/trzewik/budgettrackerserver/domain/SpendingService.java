@@ -35,19 +35,11 @@ class SpendingService implements SpendingPort {
     }
 
     @Override
-    public Spending getSpending(Long id) throws NoSpendingExistsException {
-        return spendingDataPort
-                .findById(id)
-                .orElseThrow(() -> new NoSpendingExistsException("Spending doesn't exist"));
-    }
-
-    @Override
-    public SpendingSummary getSpendingSummary() throws NoSpendingExistsException {
+    public SpendingSummary getSpendingSummary() {
         BigDecimal summary = getAllSpendings()
                 .stream()
                 .map(Spending::getPrice)
-                .reduce(BigDecimal::add)
-                .orElseThrow(() -> new NoSpendingExistsException("There are no spendings!"));
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         return new SpendingSummary(summary, OffsetDateTime.now());
     }
 }

@@ -1,7 +1,6 @@
 package com.trzewik.budgettrackerserver.domain.port.api;
 
 
-import com.trzewik.budgettrackerserver.domain.NoSpendingExistsException;
 import com.trzewik.budgettrackerserver.domain.Spending;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
@@ -19,7 +18,5 @@ public interface SpendingPort {
 
     List<Spending> getAllSpendings();
 
-    Spending getSpending(Long id) throws NoSpendingExistsException;
-
-    SpendingSummary getSpendingSummary() throws NoSpendingExistsException;
+    SpendingSummary getSpendingSummary();
 }
