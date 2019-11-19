@@ -2,6 +2,7 @@ package com.trzewik.budgettrackerserver.adapter;
 
 
 import com.trzewik.budgettrackerserver.domain.Spending;
+import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
@@ -23,12 +24,12 @@ public class SpendingControllerAdapter {
     private final SpendingPort spendingPort;
 
     @PostMapping("/spendings")
-    void addNewSpendings(@RequestBody Spending spending) throws ToLowPriceException {
+    void addNewSpendings(@RequestBody SpendingDTO spending) throws ToLowPriceException {
         spendingPort.addNewSpendings(spending);
     }
 
     @GetMapping("/spendings")
-    List<Spending> getAllSpendings() {
+    List<SpendingDTO> getAllSpendings() {
         return spendingPort.getAllSpendings();
     }
 
