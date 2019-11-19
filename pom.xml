@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.trzewik</groupId>
-    <artifactId>budget-tracker-server</artifactId>
+    <artifactId>budgettrackerserver</artifactId>
     <version>0.1</version>
 
     <properties>
@@ -37,6 +37,8 @@
         <version.jgiven>0.18.2</version.jgiven>
         <version.restassuredmockmvc>4.1.2</version.restassuredmockmvc>
         <version.javax.inject>1</version.javax.inject>
+
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -95,6 +97,7 @@
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
+            <version>${version.junit.jupiter}</version>
             <scope>test</scope>
         </dependency>
 
@@ -251,6 +254,12 @@
                                 </rule>
                             </rules>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

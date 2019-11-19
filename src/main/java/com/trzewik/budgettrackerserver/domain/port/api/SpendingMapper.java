@@ -1,0 +1,14 @@
+package com.trzewik.budgettrackerserver.domain.port.api;
+
+import com.trzewik.budgettrackerserver.domain.Spending;
+import com.trzewik.budgettrackerserver.domain.SpendingDTO;
+
+/**
+ * @author Agnieszka Trzewik
+ */
+public interface SpendingMapper {
+
+    SpendingDTO map(Spending spending);
+
+    Spending map(SpendingDTO spendingDTO);
+}

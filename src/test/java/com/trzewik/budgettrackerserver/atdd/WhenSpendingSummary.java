@@ -4,9 +4,10 @@ import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.As;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
+import com.tngtech.jgiven.annotation.Table;
 import com.tngtech.jgiven.integration.spring.JGivenStage;
 import com.trzewik.budgettrackerserver.adapter.SpendingControllerAdapter;
-import com.trzewik.budgettrackerserver.domain.Spending;
+import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -26,7 +27,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
     private SpendingSummary spendingSummary;
 
     @ProvidedScenarioState
-    private List<Spending> spendings;
+    private List<SpendingDTO> spendings;
 
     @Inject
     private SpendingPort spendingPort;
@@ -47,29 +48,18 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
         return self();
     }
 
-    @As("I add bananas")
-    WhenSpendingSummary post_bananas() {
-        RestAssuredMockMvc
-                .given()
-                .contentType(JSON)
-                .body("{" +
-                        "\"description\": \"banany\",\n" +
-                        "\"price\": \"10.2\"" +
-                        "}")
-                .post("/spendings");
-        return self();
-    }
-
-    @As("and add cherries")
-    WhenSpendingSummary post_cherries() {
-        RestAssuredMockMvc
-                .given()
-                .contentType(JSON)
-                .body("{" +
-                        "\"description\": \"czereśnie\",\n" +
-                        "\"price\": \"10.2\"" +
-                        "}")
-                .post("/spendings");
+    @As("add spendings")
+    WhenSpendingSummary post_spendings(@Table TestSpending... spendings) {
+        for (TestSpending spending : spendings) {
+            RestAssuredMockMvc
+                    .given()
+                    .contentType(JSON)
+                    .body("{" +
+                            "\"description\": \"" + spending.description + "\",\n" +
+                            "\"price\": \"" + spending.price + "\"" +
+                            "}")
+                    .post("/spendings");
+        }
         return self();
     }
 }
