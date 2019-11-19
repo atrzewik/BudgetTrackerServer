@@ -1,6 +1,5 @@
 package com.trzewik.budgettrackerserver.domain;
 
-import com.trzewik.budgettrackerserver.domain.port.api.SpendingMapper;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import com.trzewik.budgettrackerserver.domain.port.spi.SpendingDataPort;
 import lombok.RequiredArgsConstructor;
@@ -20,21 +19,18 @@ class SpendingService implements SpendingPort {
 
     private final SpendingDataPort<Spending> spendingDataPort;
 
-    private final SpendingMapper spendingMapper;
-
-
     @Override
-    public void addNewSpendings(SpendingDTO spending) throws ToLowPriceException {
+    public void addNewSpendings(Spending spending) throws ToLowPriceException {
         if (spending.getPrice().compareTo(BigDecimal.ZERO) < 0) throw new ToLowPriceException("To low price!");
-        else spendingDataPort.save(spendingMapper.map(spending));
+        else spendingDataPort.save(spending);
     }
 
     @Override
-    public List<SpendingDTO> getAllSpendings() {
-        List<SpendingDTO> spendings = new ArrayList<>();
+    public List<Spending> getAllSpendings() {
+        List<Spending> spendings = new ArrayList<>();
         spendingDataPort
                 .findAll()
-                .forEach(spendingMapper::map);
+                .forEach(spendings::add);
         return spendings;
     }
 
@@ -42,7 +38,7 @@ class SpendingService implements SpendingPort {
     public SpendingSummary getSpendingSummary() {
         BigDecimal summary = getAllSpendings()
                 .stream()
-                .map(SpendingDTO::getPrice)
+                .map(Spending::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         return new SpendingSummary(summary, OffsetDateTime.now());
     }

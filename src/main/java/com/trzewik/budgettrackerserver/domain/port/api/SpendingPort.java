@@ -2,7 +2,6 @@ package com.trzewik.budgettrackerserver.domain.port.api;
 
 
 import com.trzewik.budgettrackerserver.domain.Spending;
-import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 
@@ -15,9 +14,9 @@ import java.util.List;
 @Named
 public interface SpendingPort {
 
-    void addNewSpendings(SpendingDTO spending) throws ToLowPriceException;
+    void addNewSpendings(Spending spending) throws ToLowPriceException;
 
-    List<SpendingDTO> getAllSpendings();
+    List<Spending> getAllSpendings();
 
     SpendingSummary getSpendingSummary();
 }

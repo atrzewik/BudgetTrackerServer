@@ -2,19 +2,15 @@ package com.trzewik.budgettrackerserver.adapter;
 
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.web.context.WebApplicationContext;
-
-import javax.inject.Inject;
 
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author Agnieszka Trzewik
@@ -22,15 +18,11 @@ import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
-@DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 class SpendingControllerAdapterTest {
 
-    @Inject
-    private WebApplicationContext webApplicationContext;
-
-    @BeforeEach
-    void init() {
-        RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
+    @BeforeAll
+    static void init() {
+        RestAssuredMockMvc.standaloneSetup(new SpendingControllerAdapter(mock(SpendingPort.class)));
     }
 
     @Test
@@ -47,22 +39,6 @@ class SpendingControllerAdapterTest {
                 .post("/spendings")
                 .then()
                 .statusCode(200);
-    }
-
-    @Test
-    void should_return_status_code_400_when_post_too_low_price() {
-
-        RestAssuredMockMvc
-                .given()
-                .contentType(JSON)
-                .body("{" +
-                        "\"description\": \"nana\",\n" +
-                        "\"price\": \"-10.2\"" +
-                        "}")
-                .when()
-                .post("/spendings")
-                .then()
-                .statusCode(400);
     }
 
     @Test

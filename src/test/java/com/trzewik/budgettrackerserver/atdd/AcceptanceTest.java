@@ -34,7 +34,9 @@ class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendi
 
         section("Summary with two spendings");
 
-        when().post_spending(new TestSpending("banany", "10.2"), new TestSpending("czereśnie", "10.2"))
+        when().post_bananas()
+                .and()
+                .post_cherries()
                 .and().get_spendings_summary()
                 .and()
                 .get_all_spendings();
