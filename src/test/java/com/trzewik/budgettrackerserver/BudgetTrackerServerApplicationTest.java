@@ -13,6 +13,6 @@ import org.springframework.test.context.TestPropertySource;
 class BudgetTrackerServerApplicationTest {
 
     @Test
-    void should_loadContext_when_executeThisMethod() {
+    void should_load_context_when_execute_this_method() {
     }
 }

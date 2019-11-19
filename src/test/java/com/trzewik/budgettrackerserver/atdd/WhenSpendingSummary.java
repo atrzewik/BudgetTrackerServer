@@ -10,8 +10,8 @@ import com.trzewik.budgettrackerserver.domain.Spending;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Inject;
 import java.util.List;
 
 import static io.restassured.http.ContentType.JSON;
@@ -28,7 +28,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
     @ProvidedScenarioState
     private List<Spending> spendings;
 
-    @Autowired
+    @Inject
     private SpendingPort spendingPort;
 
     @BeforeStage
@@ -36,7 +36,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
         RestAssuredMockMvc.standaloneSetup(new SpendingControllerAdapter(spendingPort));
     }
 
-    @As( "I get spendings summary" )
+    @As("I get spendings summary")
     WhenSpendingSummary get_spendings_summary() {
         spendingSummary = spendingPort.getSpendingSummary();
         return self();
@@ -47,7 +47,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
         return self();
     }
 
-    @As( "I add bananas" )
+    @As("I add bananas")
     WhenSpendingSummary post_bananas() {
         RestAssuredMockMvc
                 .given()
@@ -60,7 +60,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
         return self();
     }
 
-    @As( "and add cherries" )
+    @As("and add cherries")
     WhenSpendingSummary post_cherries() {
         RestAssuredMockMvc
                 .given()

@@ -2,6 +2,7 @@ package com.trzewik.budgettrackerserver.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
  * @author Agnieszka Trzewik
  */
 @Entity
+@NoArgsConstructor
 public class Spending {
 
     @JsonIgnore
@@ -25,4 +27,8 @@ public class Spending {
     @Getter
     private BigDecimal price;
 
+    public Spending(String description, BigDecimal price) {
+        this.description = description;
+        this.price = price;
+    }
 }
