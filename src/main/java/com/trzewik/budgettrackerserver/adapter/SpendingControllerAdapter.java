@@ -3,7 +3,6 @@ package com.trzewik.budgettrackerserver.adapter;
 
 import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
-import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class SpendingControllerAdapter {
     private final SpendingPort spendingPort;
 
     @PostMapping("/spendings")
-    void addNewSpendings(@RequestBody SpendingDTO spending) throws ToLowPriceException {
+    void addNewSpendings(@RequestBody SpendingDTO spending) {
         spendingPort.addNewSpendings(spending);
     }
 

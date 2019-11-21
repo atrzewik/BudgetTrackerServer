@@ -3,7 +3,6 @@ package com.trzewik.budgettrackerserver.domain.port.api;
 
 import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
-import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 
 import javax.inject.Named;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 @Named
 public interface SpendingPort {
 
-    void addNewSpendings(SpendingDTO spending) throws ToLowPriceException;
+    void addNewSpendings(SpendingDTO spending);
 
     List<SpendingDTO> getAllSpendings();
 

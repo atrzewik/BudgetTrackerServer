@@ -23,7 +23,7 @@ class SpendingService implements SpendingPort {
     private final SpendingMapper spendingMapper;
 
     @Override
-    public void addNewSpendings(SpendingDTO spending) throws ToLowPriceException {
+    public void addNewSpendings(SpendingDTO spending) {
         if (spending.getPrice().compareTo(BigDecimal.ZERO) < 0) throw new ToLowPriceException("To low price!");
         else spendingDataPort.save(spendingMapper.map(spending));
     }

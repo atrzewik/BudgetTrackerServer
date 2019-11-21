@@ -4,7 +4,6 @@ import com.tngtech.jgiven.integration.spring.EnableJGiven;
 import com.tngtech.jgiven.integration.spring.SpringScenarioTest;
 import com.tngtech.jgiven.junit5.JGivenExtension;
 import com.trzewik.budgettrackerserver.domain.SpendingDTO;
-import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +23,7 @@ class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendi
 
 
     @Test
-    void spendings_summary() throws ToLowPriceException {
+    void spendings_summary() {
 
         section("Summary with no spendings");
 

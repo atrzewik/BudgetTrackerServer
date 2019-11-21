@@ -9,7 +9,6 @@ import com.tngtech.jgiven.integration.spring.JGivenStage;
 import com.trzewik.budgettrackerserver.adapter.SpendingControllerAdapter;
 import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
-import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingPort;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
@@ -48,7 +47,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
     }
 
     @As("add spendings")
-    WhenSpendingSummary post_spendings(@Table SpendingDTO... spendings) throws ToLowPriceException {
+    WhenSpendingSummary post_spendings(@Table SpendingDTO... spendings) {
         for (SpendingDTO spending : spendings) {
             spendingPort.addNewSpendings(spending);
         }
