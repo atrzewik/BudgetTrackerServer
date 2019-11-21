@@ -4,7 +4,7 @@ import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.As;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.integration.spring.JGivenStage;
-import com.trzewik.budgettrackerserver.domain.Spending;
+import com.trzewik.budgettrackerserver.adapter.Spending;
 import com.trzewik.budgettrackerserver.domain.SpendingSummary;
 
 import java.math.BigDecimal;

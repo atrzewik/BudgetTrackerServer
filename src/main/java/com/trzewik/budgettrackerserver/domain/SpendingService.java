@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 class SpendingService implements SpendingPort {
 
-    private final SpendingDataPort<Spending> spendingDataPort;
+    private final SpendingDataPort spendingDataPort;
 
     private final SpendingMapper spendingMapper;
 

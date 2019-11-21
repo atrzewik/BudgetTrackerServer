@@ -1,5 +1,6 @@
 package com.trzewik.budgettrackerserver.domain;
 
+import com.trzewik.budgettrackerserver.adapter.Spending;
 import com.trzewik.budgettrackerserver.domain.port.api.SpendingMapper;
 
 import javax.inject.Named;

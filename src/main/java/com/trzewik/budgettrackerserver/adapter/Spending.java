@@ -1,4 +1,4 @@
-package com.trzewik.budgettrackerserver.domain;
+package com.trzewik.budgettrackerserver.adapter;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class Spending {
     @Getter
     private BigDecimal price;
 
-    Spending(String description, BigDecimal price) {
+    public Spending(String description, BigDecimal price) {
         this.description = description;
         this.price = price;
     }
