@@ -3,10 +3,14 @@ package com.trzewik.budgettrackerserver.atdd;
 import com.tngtech.jgiven.integration.spring.EnableJGiven;
 import com.tngtech.jgiven.integration.spring.SpringScenarioTest;
 import com.tngtech.jgiven.junit5.JGivenExtension;
+import com.trzewik.budgettrackerserver.domain.SpendingDTO;
+import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+
+import java.math.BigDecimal;
 
 /**
  * @author Agnieszka Trzewik
@@ -20,7 +24,7 @@ class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendi
 
 
     @Test
-    void spendings_summary() {
+    void spendings_summary() throws ToLowPriceException {
 
         section("Summary with no spendings");
 
@@ -34,7 +38,7 @@ class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendi
 
         section("Summary with two spendings");
 
-        when().post_spendings(new TestSpending("banany", "10.2"), new TestSpending("czereśnie", "10.2"))
+        when().post_spendings(new SpendingDTO("banany", new BigDecimal("10.2")), new SpendingDTO("czereśnie", new BigDecimal("10.2")))
                 .and().get_spendings_summary()
                 .and()
                 .get_all_spendings();

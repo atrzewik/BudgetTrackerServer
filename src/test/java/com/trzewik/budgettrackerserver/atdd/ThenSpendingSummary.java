@@ -32,7 +32,7 @@ class ThenSpendingSummary extends Stage<ThenSpendingSummary> {
     }
 
     ThenSpendingSummary summary_list_size_is_2() {
-        assertThat(spendings.size()).isEqualTo(2);
+        assertThat(spendings).hasSize(2);
         return self();
     }
 
