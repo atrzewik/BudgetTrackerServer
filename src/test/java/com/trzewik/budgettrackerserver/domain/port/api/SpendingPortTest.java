@@ -9,6 +9,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.TestPropertySource;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
-@DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
+@Transactional
 class SpendingPortTest {
 
     @Inject
@@ -34,7 +35,7 @@ class SpendingPortTest {
         ToLowPriceException toLowPriceException = assertThrows(ToLowPriceException.class,
                 () ->
                         spendingPort
-                                .addNewSpendings(new SpendingDTO("nanana", new BigDecimal("-0.1")))
+                                .addNewSpending(new SpendingDTO("nanana", new BigDecimal("-0.1")))
         );
         //Then
         assertTrue(toLowPriceException.getMessage().contains("To low price!"));
@@ -60,13 +61,24 @@ class SpendingPortTest {
     }
 
     @Test
-    void should_return_list_size_one_when_one_spendings() throws ToLowPriceException {
+    void should_return_list_size_one_when_one_spendings() {
         //Given
-        spendingPort.addNewSpendings(new SpendingDTO("nana", new BigDecimal("1")));
+        spendingPort.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
         //When
         List<SpendingDTO> allSpendings = spendingPort.getAllSpendings();
         //Then
-        assertThat(allSpendings.size()).isEqualTo(1);
+        assertThat(allSpendings).hasSize(1);
+    }
+
+
+    @Test
+    void should_return_list_size_one_when_one_spendings2() {
+        //Given
+        spendingPort.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
+        //When
+        List<SpendingDTO> allSpendings = spendingPort.getAllSpendings();
+        //Then
+        assertThat(allSpendings).hasSize(1);
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
@@ -20,7 +21,7 @@ import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@Transactional
 class SpendingControllerAdapterTest {
 
     @Inject

@@ -23,7 +23,7 @@ public class SpendingControllerAdapter {
 
     @PostMapping("/spendings")
     void addNewSpendings(@RequestBody SpendingDTO spending) {
-        spendingPort.addNewSpendings(spending);
+        spendingPort.addNewSpending(spending);
     }
 
     @GetMapping("/spendings")

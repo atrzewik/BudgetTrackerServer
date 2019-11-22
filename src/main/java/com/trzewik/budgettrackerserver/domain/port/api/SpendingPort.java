@@ -13,7 +13,7 @@ import java.util.List;
 @Named
 public interface SpendingPort {
 
-    void addNewSpendings(SpendingDTO spending);
+    void addNewSpending(SpendingDTO spending);
 
     List<SpendingDTO> getAllSpendings();
 

@@ -49,7 +49,7 @@ class WhenSpendingSummary extends Stage<WhenSpendingSummary> {
     @As("add spendings")
     WhenSpendingSummary post_spendings(@Table SpendingDTO... spendings) {
         for (SpendingDTO spending : spendings) {
-            spendingPort.addNewSpendings(spending);
+            spendingPort.addNewSpending(spending);
         }
         return self();
     }
