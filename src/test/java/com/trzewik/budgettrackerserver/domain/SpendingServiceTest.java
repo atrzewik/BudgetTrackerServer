@@ -2,9 +2,9 @@ package com.trzewik.budgettrackerserver.domain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Agnieszka Trzewik
  */
 @SpringBootTest
-@Transactional
 class SpendingServiceTest {
 
     @Inject
@@ -37,6 +36,7 @@ class SpendingServiceTest {
     }
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void should_return_zero_when_spendings_are_empty() {
         //Given
         //When
@@ -46,6 +46,7 @@ class SpendingServiceTest {
     }
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void should_return_empty_list_when_no_spendings() {
         //Given
         //When
@@ -55,6 +56,7 @@ class SpendingServiceTest {
     }
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void should_return_list_size_two_when_two_spendings_in_DB() {
         //Given
         prepare_base_with_two_elements();
@@ -66,6 +68,7 @@ class SpendingServiceTest {
 
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void should_return_list_size_one_when_add_one_spending() {
         //Given
         spendingService.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));

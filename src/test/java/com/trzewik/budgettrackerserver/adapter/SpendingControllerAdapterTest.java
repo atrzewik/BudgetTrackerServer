@@ -4,10 +4,10 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
@@ -18,7 +18,6 @@ import static org.hamcrest.Matchers.is;
  */
 
 @SpringBootTest
-@Transactional
 class SpendingControllerAdapterTest {
 
     @Inject
@@ -62,6 +61,7 @@ class SpendingControllerAdapterTest {
     }
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void should_return_empty_list_when_get_spendings() {
 
         RestAssuredMockMvc

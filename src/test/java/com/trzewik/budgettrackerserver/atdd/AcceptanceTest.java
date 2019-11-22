@@ -7,8 +7,8 @@ import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 /**
@@ -16,13 +16,13 @@ import java.math.BigDecimal;
  */
 
 @SpringBootTest
-@Transactional
 @EnableJGiven
 @ExtendWith(JGivenExtension.class)
 class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendingSummary, ThenSpendingSummary> {
 
 
     @Test
+    @Sql(scripts = {"/clean-up-data.sql"})
     void spendings_summary() {
 
         section("Summary with no spendings");
