@@ -7,8 +7,8 @@ import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 /**
@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  */
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
+@Transactional
 @EnableJGiven
 @ExtendWith(JGivenExtension.class)
 class AcceptanceTest extends SpringScenarioTest<GivenSpendingSummary, WhenSpendingSummary, ThenSpendingSummary> {

@@ -4,8 +4,6 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
@@ -20,7 +18,6 @@ import static org.hamcrest.Matchers.is;
  */
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
 @Transactional
 class SpendingControllerAdapterTest {
 

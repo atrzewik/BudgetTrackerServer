@@ -1,0 +1,8 @@
+spring:
+  profiles: test
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:/${DB_URL}/budget-tracker-server/src/test/resources/data/budgettrackertest
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate.ddl-auto: create-drop

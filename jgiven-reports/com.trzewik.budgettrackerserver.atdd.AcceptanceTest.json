@@ -1,0 +1,201 @@
+{
+  "className": "com.trzewik.budgettrackerserver.atdd.AcceptanceTest",
+  "name": "Acceptance",
+  "scenarios": [
+    {
+      "className": "com.trzewik.budgettrackerserver.atdd.AcceptanceTest",
+      "testMethodName": "spendings_summary",
+      "description": "spendings summary",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "Summary with no spendings",
+              "words": [
+                {
+                  "value": "Summary with no spendings"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 0,
+              "isSectionTitle": true
+            },
+            {
+              "name": "I get spendings summary",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "I get spendings summary"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 7093702
+            },
+            {
+              "name": "get all spendings",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "get all spendings"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 890093
+            },
+            {
+              "name": "summary spendings field is zero",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "summary spendings field is zero"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 28954
+            },
+            {
+              "name": "list of all spendings with description is empty",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "list of all spendings with description is empty"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 6685653
+            },
+            {
+              "name": "Summary with two spendings",
+              "words": [
+                {
+                  "value": "Summary with two spendings"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 0,
+              "isSectionTitle": true
+            },
+            {
+              "name": "add spendings",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "add spendings"
+                },
+                {
+                  "value": "com.trzewik.budgettrackerserver.domain.SpendingDTO@285b63eb, com.trzewik.budgettrackerserver.domain.SpendingDTO@5a983f8a",
+                  "argumentInfo": {
+                    "argumentName": "spendings",
+                    "dataTable": {
+                      "headerType": "HORIZONTAL",
+                      "data": [
+                        [
+                          "description",
+                          "price"
+                        ],
+                        [
+                          "banany",
+                          "10.2"
+                        ],
+                        [
+                          "czereśnie",
+                          "10.2"
+                        ]
+                      ]
+                    }
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 40280
+            },
+            {
+              "name": "I get spendings summary",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "I get spendings summary"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 25040
+            },
+            {
+              "name": "get all spendings",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "get all spendings"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 862829
+            },
+            {
+              "name": "summary spendings field is 20.4",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "summary spendings field is 20.4"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 22129
+            },
+            {
+              "name": "summary list size is 2",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "summary list size is 2"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 835004
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "success": true,
+          "durationInNanos": 232984970
+        }
+      ],
+      "durationInNanos": 232984970,
+      "executionStatus": "SUCCESS"
+    }
+  ],
+  "tagMap": {}
+}

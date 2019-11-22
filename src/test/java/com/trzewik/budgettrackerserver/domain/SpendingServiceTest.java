@@ -1,12 +1,7 @@
-package com.trzewik.budgettrackerserver.domain.port.api;
+package com.trzewik.budgettrackerserver.domain;
 
-import com.trzewik.budgettrackerserver.domain.SpendingDTO;
-import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.TestPropertySource;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -21,12 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Agnieszka Trzewik
  */
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
 @Transactional
-class SpendingPortTest {
+class SpendingServiceTest {
 
     @Inject
-    private SpendingPort spendingPort;
+    private SpendingService spendingService;
 
     @Test
     void should_throw_to_low_price_exception_when_price_less_then_zero() {
@@ -34,7 +28,7 @@ class SpendingPortTest {
         //When
         ToLowPriceException toLowPriceException = assertThrows(ToLowPriceException.class,
                 () ->
-                        spendingPort
+                        spendingService
                                 .addNewSpending(new SpendingDTO("nanana", new BigDecimal("-0.1")))
         );
         //Then
@@ -46,7 +40,7 @@ class SpendingPortTest {
     void should_return_zero_when_spendings_are_empty() {
         //Given
         //When
-        BigDecimal summary = spendingPort.getSpendingSummary().getSummary();
+        BigDecimal summary = spendingService.getSpendingSummary().getSummary();
         //Then
         assertThat(summary).isEqualByComparingTo(BigDecimal.ZERO);
     }
@@ -55,30 +49,35 @@ class SpendingPortTest {
     void should_return_empty_list_when_no_spendings() {
         //Given
         //When
-        List<SpendingDTO> allSpendings = spendingPort.getAllSpendings();
+        List<SpendingDTO> allSpendings = spendingService.getAllSpendings();
         //Then
         assertThat(allSpendings).isEmpty();
     }
 
     @Test
-    void should_return_list_size_one_when_one_spendings() {
+    void should_return_list_size_two_when_two_spendings_in_DB() {
         //Given
-        spendingPort.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
+        prepare_base_with_two_elements();
         //When
-        List<SpendingDTO> allSpendings = spendingPort.getAllSpendings();
+        List<SpendingDTO> allSpendings = spendingService.getAllSpendings();
         //Then
-        assertThat(allSpendings).hasSize(1);
+        assertThat(allSpendings).hasSize(2);
     }
 
 
     @Test
-    void should_return_list_size_one_when_one_spendings2() {
+    void should_return_list_size_one_when_add_one_spending() {
         //Given
-        spendingPort.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
+        spendingService.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
         //When
-        List<SpendingDTO> allSpendings = spendingPort.getAllSpendings();
+        List<SpendingDTO> allSpendings = spendingService.getAllSpendings();
         //Then
         assertThat(allSpendings).hasSize(1);
+    }
+
+    private void prepare_base_with_two_elements() {
+        spendingService.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
+        spendingService.addNewSpending(new SpendingDTO("nana", new BigDecimal("1")));
     }
 
 }
