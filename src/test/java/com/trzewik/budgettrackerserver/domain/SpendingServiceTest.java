@@ -9,8 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author Agnieszka Trzewik
@@ -25,13 +24,12 @@ class SpendingServiceTest {
     void should_throw_to_low_price_exception_when_price_less_then_zero() {
         //Given
         //When
-        ToLowPriceException toLowPriceException = assertThrows(ToLowPriceException.class,
-                () ->
-                        spendingService
-                                .addNewSpending(new SpendingDTO("nanana", new BigDecimal("-0.1")))
-        );
         //Then
-        assertTrue(toLowPriceException.getMessage().contains("To low price!"));
+        assertThatThrownBy(() ->
+                spendingService
+                        .addNewSpending(new SpendingDTO("nanana", new BigDecimal("-0.1"))))
+                .isExactlyInstanceOf(ToLowPriceException.class)
+                .hasMessage("To low price!");
 
     }
 

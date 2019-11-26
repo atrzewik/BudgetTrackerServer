@@ -1,4 +1,7 @@
 spring:
+  h2:
+    console:
+      enabled: true
   datasource:
     platform: h2
     url: jdbc:h2:file:/${DB_URL}/budget-tracker-server/src/main/resources/data/budgettracker

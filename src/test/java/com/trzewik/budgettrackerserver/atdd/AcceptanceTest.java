@@ -1,7 +1,7 @@
 package com.trzewik.budgettrackerserver.atdd;
 
 import com.tngtech.jgiven.integration.spring.EnableJGiven;
-import com.tngtech.jgiven.integration.spring.SpringScenarioTest;
+import com.tngtech.jgiven.integration.spring.junit5.SpringScenarioTest;
 import com.tngtech.jgiven.junit5.JGivenExtension;
 import com.trzewik.budgettrackerserver.domain.SpendingDTO;
 import org.junit.jupiter.api.Test;
