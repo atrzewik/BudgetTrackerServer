@@ -37,6 +37,7 @@
         <version.jgiven>0.18.2</version.jgiven>
         <version.restassuredmockmvc>4.1.2</version.restassuredmockmvc>
         <version.javax.inject>1</version.javax.inject>
+        <version.tngtech.archunit>0.12.0</version.tngtech.archunit>
 
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
@@ -135,6 +136,19 @@
             <groupId>com.tngtech.jgiven</groupId>
             <artifactId>jgiven-junit5</artifactId>
             <version>${version.jgiven}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-api</artifactId>
+            <version>${version.tngtech.archunit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-engine</artifactId>
+            <version>${version.tngtech.archunit}</version>
             <scope>test</scope>
         </dependency>
 

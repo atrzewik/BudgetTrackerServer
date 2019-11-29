@@ -1,5 +1,6 @@
-package com.trzewik.budgettrackerserver.domain;
+package com.trzewik.budgettrackerserver.adapter;
 
+import com.trzewik.budgettrackerserver.domain.ToLowPriceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
