@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.inject.Named;
 import javax.persistence.Entity;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 
 @AnalyzeClasses(packages = "com.trzewik.budgettrackerserver")
 public class HexagonalArchitectureTest {
@@ -50,4 +49,9 @@ public class HexagonalArchitectureTest {
             .orShould()
             .dependOnClassesThat()
             .areAnnotatedWith(Controller.class);
+
+    @ArchTest
+    public static final ArchRule rule_for_junit4_methods = noMethods()
+            .should()
+            .beAnnotatedWith("org.junit.Test");
 }
