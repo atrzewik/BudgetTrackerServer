@@ -33,7 +33,7 @@
         <version.junit.jupiter>5.5.1</version.junit.jupiter>
         <version.jacoco>0.8.4</version.jacoco>
         <version.sonar>3.7.0.1746</version.sonar>
-        <version.h2>1.4.199</version.h2>
+        <version.h2>2.0.206</version.h2>
         <version.jgiven>0.18.2</version.jgiven>
         <version.restassuredmockmvc>4.1.2</version.restassuredmockmvc>
         <version.javax.inject>1</version.javax.inject>
